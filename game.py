@@ -27,12 +27,8 @@ class Dog:
     def __init__(self, pos) -> None:
         self.state = 0
         self.state_imgs = []
-        for sname in ("idle", "jump1", "jump2", "falling"):
-            img = pygame.image.load(f"assets/{sname}.png")
-            scale_factor = 0.45
-            scale_x = img.get_width() * scale_factor
-            scale_y = img.get_height() * scale_factor
-            img = pygame.transform.scale(img, (scale_x, scale_y))
+        for sname in ("idle", "jump", "fly", "falling"):
+            img = pygame.image.load(f"assets/kat_{sname}.png")
             self.state_imgs.append(img)
         self.body = pymunk.Body()
         self.body.position = convert(pos)
@@ -55,13 +51,13 @@ class Dog:
         pos[1] -= vertical_offset
         dest = img.get_rect(center=pos)
         main_surface.blit(img, dest)
-        pygame.draw.circle(
-            main_surface,
-            (255, 220, 220),
-            pos,
-            self.shape.radius,
-            1,
-        )
+        # pygame.draw.circle(
+        #     main_surface,
+        #     (255, 220, 220),
+        #     pos,
+        #     self.shape.radius,
+        #     1,
+        # )
 
 
 class Spring:
